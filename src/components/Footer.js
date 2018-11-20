@@ -3,7 +3,9 @@ import React from 'react'
 const Footer = () => {
   return (
     <div>
-      <p>Todo Footer</p>
+      <p   style={{
+                textAlign: 'center'
+            }}>React Assessments@smilez</p>
     </div>
   )
 }

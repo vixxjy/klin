@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Todo from './Todo';
 
-const TodoList = ({ tasks, deleteTask }) => {
+const TodoList = ({ tasks, deleteTask, completeTask }) => {
     let listTasks = '';
+
     if (tasks.length > 0) {
         const alltasks = tasks;
-        listTasks = alltasks.map((task) =>
-            <li className="list-group-item active justify-content-between" key={task.id}>
-            <span className="badge badge-dark">{task.id + 1}</span>{task.task}
-            <span className="badge badge-success badge-pill">Complete</span>
-            <span className="badge badge-danger badge-pill">Delete</span>
-            </li>
+        listTasks = alltasks.map((task, index) => 
+          <Todo key={index} id = {task.id} { ...task } isCompleted = {task.completed} 
+          deleteTask={deleteTask} completeTask={completeTask} />
         );
     }
     else {
@@ -18,9 +17,7 @@ const TodoList = ({ tasks, deleteTask }) => {
 
   return (
     <div>
-      <ul className="list-group">
-        {listTasks}
-      </ul>
+        { listTasks }
     </div>
   )
 }

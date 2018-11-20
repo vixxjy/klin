@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid} from 'react-bootstrap';
 import './App.css';
-import Todo from './components/Todo';
+import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
 
@@ -16,10 +16,10 @@ class App extends Component {
 
     this.addTask = this.addTask.bind( this );
     this.deleteTask = this.deleteTask.bind( this );
+    this.completeTask = this.completeTask.bind( this );
   }
 
   addTask(task) {
-    // console.log("task", task);
     const { tasks, taskId } = this.state;
     this.setState({
       tasks: [
@@ -32,12 +32,17 @@ class App extends Component {
       ],
       taskId: taskId + 1
     })
-    console.log(this.state.tasks + " " + this.state.taskId);
   }
 
   deleteTask( id ) {
     const { tasks } = this.state;
     this.setState({ tasks: tasks.filter( task => task.id !== id ) });
+  }
+
+  completeTask( id ) {
+    const { tasks } = this.state;
+    tasks.find( task => task.id === id ).completed = true;
+    this.setState({ tasks });
   }
 
   render() {
@@ -47,10 +52,14 @@ class App extends Component {
             <h3>Todo App:</h3>
         </Grid>
         <Grid className="purchase-card">
-            <Todo addTask={ this.addTask } />
+            <AddTodo addTask={ this.addTask } />
         </Grid>
         <Grid className="purchase-card">
-            <TodoList tasks={ this.state.tasks} deleteTask={ this.deleteTask }/>
+            <TodoList 
+              tasks={ this.state.tasks} 
+              deleteTask={ this.deleteTask } 
+              completeTask={this.completeTask} 
+            />
         </Grid>
         <Grid className="purchase-card">
             <Footer />
