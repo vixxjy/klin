@@ -1,4 +1,4 @@
-import { CREATE_TASK, COMPLETE_TASK, DELETE_TASK } from './type';
+import { CREATE_TASK, COMPLETE_TASK, DELETE_TASK } from '../constants';
 
 
 export function addTask(task) {
