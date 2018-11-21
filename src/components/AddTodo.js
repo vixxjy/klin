@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { addTask } from '../actions'
 
 class AddTodo extends Component {
   constructor(props) {
@@ -18,11 +20,10 @@ class AddTodo extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { addTask } = this.props;
     const { task } = this.state;
     
     if (task.length > 0) {
-      addTask(task);
+      this.props.addTask(task);
       this.setState({ task: '' });
     }else{
       this.setState({ taskError: `Task Field Can't Be Empty !!!` });
@@ -44,5 +45,7 @@ class AddTodo extends Component {
     )
   }
 }
+
+AddTodo = connect(null, { addTask })(AddTodo);
 
 export default AddTodo;

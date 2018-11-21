@@ -7,43 +7,6 @@ import Footer from './components/Footer';
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      tasks: [],
-      taskId: 0
-    }
-
-    this.addTask = this.addTask.bind( this );
-    this.deleteTask = this.deleteTask.bind( this );
-    this.completeTask = this.completeTask.bind( this );
-  }
-
-  addTask(task) {
-    const { tasks, taskId } = this.state;
-    this.setState({
-      tasks: [
-        ...tasks,
-        {
-          id: taskId,
-          task,
-          completed: false
-        }
-      ],
-      taskId: taskId + 1
-    })
-  }
-
-  deleteTask( id ) {
-    const { tasks } = this.state;
-    this.setState({ tasks: tasks.filter( task => task.id !== id ) });
-  }
-
-  completeTask( id ) {
-    const { tasks } = this.state;
-    tasks.find( task => task.id === id ).completed = true;
-    this.setState({ tasks });
-  }
 
   render() {
     return (
@@ -52,14 +15,10 @@ class App extends Component {
             <h3>Todo App:</h3>
         </Grid>
         <Grid className="purchase-card">
-            <AddTodo addTask={ this.addTask } />
+            <AddTodo />
         </Grid>
         <Grid className="purchase-card">
-            <TodoList 
-              tasks={ this.state.tasks} 
-              deleteTask={ this.deleteTask } 
-              completeTask={this.completeTask} 
-            />
+            <TodoList />
         </Grid>
         <Grid className="purchase-card">
             <Footer />
