@@ -1,14 +1,14 @@
 import React from 'react';
 import Todo from './Todo';
+import { connect } from 'react-redux';
 
-const TodoList = ({ tasks, deleteTask, completeTask }) => {
+const TodoList = ({ tasks }) => {
     let listTasks = '';
 
     if (tasks.length > 0) {
         const alltasks = tasks;
         listTasks = alltasks.map((task, index) => 
-          <Todo key={index} id = {task.id} { ...task } isCompleted = {task.completed} 
-          deleteTask={deleteTask} completeTask={completeTask} />
+          <Todo key={index} id = {task.id} { ...task } isCompleted = {task.completed} />
         );
     }
     else {
@@ -22,4 +22,10 @@ const TodoList = ({ tasks, deleteTask, completeTask }) => {
   )
 }
 
-export default TodoList;
+function mapStateToProps( state ) {
+    return {
+      tasks: state.tasks
+    }
+}
+
+export default connect(mapStateToProps, null)(TodoList);

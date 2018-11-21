@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { deleteTask } from '../actions';
+import { completeTask } from '../actions';
 
 const Todo = ({ id, task, deleteTask, completeTask, isCompleted }) => {
     return (
@@ -14,4 +17,4 @@ const Todo = ({ id, task, deleteTask, completeTask, isCompleted }) => {
     )
 }
 
-export default Todo;
+export default connect(null, {completeTask, deleteTask})(Todo);
