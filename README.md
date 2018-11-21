@@ -1,7 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![Screenshot](img.png)
-
 ## React-todo-App
 
 This app was built with react and redux, kindly drop suggestions and tips:
